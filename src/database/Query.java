@@ -20,7 +20,7 @@ public class Query {
     CreateBBDD dataBase = new CreateBBDD();
     
     public void tableFitment (JTable table){ // selecciono todo de la tabla para poner en la UI
-        String query = "SELECT * FROM mueble;";
+        String query = "SELECT * FROM mueble m";
         
         try{
             Statement stmt = dataBase.con.createStatement();
@@ -29,7 +29,7 @@ public class Query {
             
             while (rs.next()) {
                 DefaultTableModel model = (DefaultTableModel) table.getModel(); // añade filas a la tabla automaticamente
-                model.addRow(new Object[]{rs.getInt("modelo"), rs.getString("nombre"), rs.getInt("precio"), rs.getInt("paquetes")});                
+                model.addRow(new Object[]{rs.getInt("modelo"), rs.getString("nombre"), rs.getInt("precio"), rs.getInt("paquetes"), rs.getInt("cantidad")});                
             }
             
             rs.close();
@@ -41,7 +41,7 @@ public class Query {
     }
     
     public void tableSize (JTable table){ // selecciono todo de la tabla para poner en la UI
-        String query = "SELECT * FROM tamano;";
+        String query = "SELECT t.id, t.ancho, t.fondo, t.altura, t.peso_balda, t.mueble.modelo FROM tamano t";
         
         try{
             Statement stmt = dataBase.con.createStatement();
@@ -51,7 +51,7 @@ public class Query {
             while (rs.next()) {
                 
                 DefaultTableModel model = (DefaultTableModel) table.getModel(); // añade filas a la tabla automaticamente
-                model.addRow(new Object[]{rs.getInt("id"), rs.getInt("ancho"), rs.getInt("fondo"), rs.getInt("altura"), rs.getInt("peso_balda"), rs.getInt("mueble")});                
+                model.addRow(new Object[]{rs.getInt("id"), rs.getInt("ancho"), rs.getInt("fondo"), rs.getInt("altura"), rs.getInt("peso_balda"), rs.getInt("mueble.modelo")});                
             }
             
             rs.close();
@@ -63,7 +63,7 @@ public class Query {
     }
     
     public void tableMaterial (JTable table){ // selecciono todo de la tabla para poner en la UI
-        String query = "SELECT * FROM material;";
+        String query = "SELECT m.id, m.principal, m.secundario, m.mueble.modelo FROM material m";
         
         try{
             Statement stmt = dataBase.con.createStatement();
@@ -73,7 +73,7 @@ public class Query {
             while (rs.next()) {
                 
                 DefaultTableModel model = (DefaultTableModel) table.getModel(); // añade filas a la tabla automaticamente
-                model.addRow(new Object[]{rs.getInt("id"), rs.getString("principal"), rs.getString("secundario"), rs.getInt("mueble")});                
+                model.addRow(new Object[]{rs.getInt("id"), rs.getString("principal"), rs.getString("secundario"), rs.getInt("mueble.modelo")});                
             }
             
             rs.close();
@@ -88,10 +88,11 @@ public class Query {
         String text = "";
         String query = "";
         switch(column){ // segun lo elegido en el comboBox entra en un lado o en otro
-            case 0: query = "SELECT * FROM mueble WHERE modelo = ?;"; break;
-            case 1: query = "SELECT * FROM mueble WHERE nombre = ?;"; break;
-            case 2: query = "SELECT * FROM mueble WHERE precio = ?;"; break;
-            case 3: query = "SELECT * FROM mueble WHERE paquetes = ?;"; break;
+            case 0: query = "SELECT * FROM mueble WHERE modelo = ?"; break;
+            case 1: query = "SELECT * FROM mueble WHERE nombre = ?"; break;
+            case 2: query = "SELECT * FROM mueble WHERE precio = ?"; break;
+            case 3: query = "SELECT * FROM mueble WHERE paquetes = ?"; break;
+            case 4: query = "SELECT * FROM mueble WHERE cantidad = ?"; break;
         }
 
         try{
@@ -118,12 +119,12 @@ public class Query {
         String text = "";
         String query = "";
         switch(column){ // segun lo elegido en el comboBox entra en un lado o en otro
-            case 0: query = "SELECT * FROM tamano WHERE id = ?;"; break;
-            case 1: query = "SELECT * FROM tamano WHERE ancho = ?;"; break;
-            case 2: query = "SELECT * FROM tamano WHERE fondo = ?;"; break;
-            case 3: query = "SELECT * FROM tamano WHERE altura = ?;"; break;
-            case 4: query = "SELECT * FROM tamano WHERE peso_balda = ?;"; break;
-            case 5: query = "SELECT * FROM tamano WHERE mueble = ?;"; break;
+            case 0: query = "SELECT t.id, t.ancho, t.fondo, t.altura, t.peso_balda, t.mueble.modelo FROM tamano t WHERE id = ?"; break;
+            case 1: query = "SELECT t.id, t.ancho, t.fondo, t.altura, t.peso_balda, t.mueble.modelo FROM tamano t WHERE ancho = ?"; break;
+            case 2: query = "SELECT t.id, t.ancho, t.fondo, t.altura, t.peso_balda, t.mueble.modelo FROM tamano t fondo = ?"; break;
+            case 3: query = "SELECT t.id, t.ancho, t.fondo, t.altura, t.peso_balda, t.mueble.modelo FROM tamano t WHERE altura = ?"; break;
+            case 4: query = "SELECT t.id, t.ancho, t.fondo, t.altura, t.peso_balda, t.mueble.modelo FROM tamano t WHERE peso_balda = ?"; break;
+            case 5: query = "SELECT t.id, t.ancho, t.fondo, t.altura, t.peso_balda, t.mueble.modelo FROM tamano t WHERE t.mueble.modelo = ?"; break;
         }
 
         try{
@@ -133,7 +134,7 @@ public class Query {
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) { // lo pongo en un Jtext
-                text += String.format(" Id: %s \n Ancho: %s\n Fondo: %s\n Altura: %s\n Peso Balda: %s\n Mueble: %s \n ----------- \n", rs.getInt("id"), rs.getInt("ancho"), rs.getInt("fondo"), rs.getInt("altura"), rs.getInt("peso_balda"), rs.getInt("mueble"));
+                text += String.format(" Id: %s \n Ancho: %s\n Fondo: %s\n Altura: %s\n Peso Balda: %s\n Mueble: %s \n ----------- \n", rs.getInt("id"), rs.getInt("ancho"), rs.getInt("fondo"), rs.getInt("altura"), rs.getInt("peso_balda"), rs.getInt("mueble.modelo"));
             }
             
             rs.close();
@@ -150,10 +151,10 @@ public class Query {
         String text = "";
         String query = "";
         switch(column){ // segun lo elegido en el comboBox entra en un lado o en otro
-            case 0: query = "SELECT * FROM material WHERE id = ?;"; break;
-            case 1: query = "SELECT * FROM material WHERE principal = ?;"; break;
-            case 2: query = "SELECT * FROM material WHERE secundario = ?;"; break;
-            case 3: query = "SELECT * FROM material WHERE mueble = ?;"; break;
+            case 0: query = "SELECT m.id, m.principal, m.secundario, m.mueble.modelo FROM material m WHERE id = ?"; break;
+            case 1: query = "SELECT m.id, m.principal, m.secundario, m.mueble.modelo FROM material m WHERE principal = ?"; break;
+            case 2: query = "SELECT m.id, m.principal, m.secundario, m.mueble.modelo FROM material m WHERE secundario = ?"; break;
+            case 3: query = "SELECT m.id, m.principal, m.secundario, m.mueble.modelo FROM material m WHERE mueble = ?"; break;
         }
 
         try{
@@ -163,7 +164,7 @@ public class Query {
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) { // lo pongo en un Jtext
-                text += String.format("Id: %s \n Principal: %s\n Secundario: %s\n Mueble: %s \n ----------- \n", rs.getInt("id"), rs.getString("principal"), rs.getString("secundario"), rs.getString("mueble"));
+                text += String.format("Id: %s \n Principal: %s\n Secundario: %s\n Mueble: %s \n ----------- \n", rs.getInt("id"), rs.getString("principal"), rs.getString("secundario"), rs.getString("mueble.modelo"));
             }
             
             rs.close();
@@ -176,8 +177,8 @@ public class Query {
         return text;
     }
 
-    public void addFitment(int modelo, String nombre, int precio, int paquetes) { // añado tuplas en las tablas
-        String query = "INSERT INTO mueble(modelo,nombre,precio,paquetes) VALUES (?, ?, ?, ?);";
+    public void addFitment(int modelo, String nombre, int precio, int paquetes, int cantidad) { // añado tuplas en las tablas
+        String query = "INSERT INTO mueble(modelo,nombre,precio,paquetes,cantidad) VALUES (?, ?, ?, ?, ?)";
         
         try{
             PreparedStatement stmt = dataBase.con.prepareStatement(query);
@@ -185,6 +186,7 @@ public class Query {
             stmt.setString(2, nombre);
             stmt.setInt(3, precio);
             stmt.setInt(4, paquetes);
+            stmt.setInt(5, cantidad);
             
             stmt.executeUpdate();
             stmt.close();
@@ -194,12 +196,12 @@ public class Query {
         }
     }
 
-    public void addSize(int ancho, int fondo, int altura, int pesoBalda, int mueble) { // añado tuplas en las tablas
-        String query = "INSERT INTO tamano(id,ancho,fondo,altura,peso_balda,mueble) VALUES (?, ?, ?, ?, ?, ?);";
+    public void addSize(int id, int ancho, int fondo, int altura, int pesoBalda, int mueble) { // añado tuplas en las tablas
+        String query = "INSERT INTO tamano(id,ancho,fondo,altura,peso_balda,mueble) VALUES (?, ?, ?, ?, ?, (SELECT REF(m) FROM mueble m WHERE m.modelo = ?))";
         
         try{
             PreparedStatement stmt = dataBase.con.prepareStatement(query);
-            stmt.setInt(1, 0);
+            stmt.setInt(1, id);
             stmt.setInt(2, ancho);
             stmt.setInt(3, fondo);
             stmt.setInt(4, altura);
@@ -214,12 +216,12 @@ public class Query {
         }
     }
 
-    public void addMaterial(String principal, String secundario, int mueble) { // añado tuplas en las tablas
-        String query = "INSERT INTO material(id,principal,secundario,mueble) VALUES (?, ?, ?, ?);";
+    public void addMaterial(int id, String principal, String secundario, int mueble) { // añado tuplas en las tablas
+        String query = "INSERT INTO material(id,principal,secundario,mueble) VALUES (?, ?, ?, (SELECT REF(m) FROM mueble m WHERE m.modelo = ?))";
         
         try{
             PreparedStatement stmt = dataBase.con.prepareStatement(query);
-            stmt.setInt(1, 0);
+            stmt.setInt(1, id);
             stmt.setString(2, principal);
             stmt.setString(3, secundario);
             stmt.setInt(4, mueble);
@@ -306,7 +308,7 @@ public class Query {
                 case 2: query = String.format("UPDATE tamano SET fondo = '%s' WHERE id = %s", edit2, id); break;
                 case 3: query = String.format("UPDATE tamano SET altura = %s WHERE id = %s", edit2, id); break;
                 case 4: query = String.format("UPDATE tamano SET peso_balda = '%s' WHERE id = %s", edit2, id); break;
-                case 5: query = String.format("UPDATE tamano SET mueble = %s WHERE id = %s", edit2, id); break;
+                case 5: query = String.format("UPDATE tamano SET (SELECT REF(m) FROM mueble m WHERE m.modelo = %s) WHERE id = %s", edit2, id); break;
             }        
             
             stmt.executeUpdate(query);
@@ -325,7 +327,7 @@ public class Query {
             switch(col){ // segun el numero de la columna hace una cosa u otra
                 case 1: query = String.format("UPDATE material SET principal = '%s' WHERE id = %s", edit, id); break;
                 case 2: query = String.format("UPDATE material SET secundario = '%s' WHERE id = %s", edit, id); break;
-                case 3: query = String.format("UPDATE material SET mueble = %s WHERE id = %s", edit2, id); break;
+                case 3: query = String.format("UPDATE material SET (SELECT REF(m) FROM mueble m WHERE m.modelo = %s) WHERE id = %s", edit2, id); break;
             }        
             
             stmt.executeUpdate(query);

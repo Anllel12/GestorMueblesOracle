@@ -28,7 +28,7 @@ public class AddSize extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextAncho = new javax.swing.JTextField();
+        jTextId = new javax.swing.JTextField();
         jTextFondo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,6 +39,8 @@ public class AddSize extends javax.swing.JFrame {
         jTextMueble = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextPesoBalda = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextAncho = new javax.swing.JTextField();
 
         setTitle("Añadir Tamaño");
 
@@ -59,6 +61,8 @@ public class AddSize extends javax.swing.JFrame {
 
         jLabel6.setText("Mueble");
 
+        jLabel7.setText("Id");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,21 +78,27 @@ public class AddSize extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextMueble, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextPesoBalda, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextAncho)
                         .addComponent(jTextFondo)
-                        .addComponent(jTextAltura, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
+                        .addComponent(jTextAltura, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                        .addComponent(jTextAncho)))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -109,7 +119,7 @@ public class AddSize extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6))
                     .addComponent(jTextMueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -118,7 +128,7 @@ public class AddSize extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActionPerformed
-        inicial.query.addSize(Integer.parseInt(jTextAncho.getText()), Integer.parseInt(jTextFondo.getText()), Integer.parseInt(jTextAltura.getText()), Integer.parseInt(jTextPesoBalda.getText()), Integer.parseInt(jTextMueble.getText())); // paso los valores a la funcion
+        inicial.query.addSize(Integer.parseInt(jTextId.getText()),Integer.parseInt(jTextAncho.getText()), Integer.parseInt(jTextFondo.getText()), Integer.parseInt(jTextAltura.getText()), Integer.parseInt(jTextPesoBalda.getText()), Integer.parseInt(jTextMueble.getText())); // paso los valores a la funcion
         inicial.updateTableSize();
     }//GEN-LAST:event_jButtonActionPerformed
 
@@ -129,9 +139,11 @@ public class AddSize extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextAltura;
     private javax.swing.JTextField jTextAncho;
     private javax.swing.JTextField jTextFondo;
+    private javax.swing.JTextField jTextId;
     private javax.swing.JTextField jTextMueble;
     private javax.swing.JTextField jTextPesoBalda;
     // End of variables declaration//GEN-END:variables

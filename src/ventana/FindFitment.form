@@ -64,7 +64,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Modelo&quot;, &quot;Nombre&quot;, &quot;Precio&quot;, &quot;Paquetes&quot; })" type="code"/>
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Modelo&quot;, &quot;Nombre&quot;, &quot;Precio&quot;, &quot;Paquetes&quot;, &quot;Cantidad&quot;})" type="code"/>
         </Property>
       </Properties>
       <AuxValues>

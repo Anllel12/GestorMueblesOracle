@@ -34,9 +34,11 @@ public class AddFitment extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextModelo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextPaquetes = new javax.swing.JTextField();
+        jTextCantidad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jTextPaquetes = new javax.swing.JTextField();
 
         setTitle("Añadir Muebles");
 
@@ -55,28 +57,33 @@ public class AddFitment extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Cantidad");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addGap(116, 116, 116)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextModelo)
-                    .addComponent(jTextNombre)
-                    .addComponent(jTextPrecio)
-                    .addComponent(jTextPaquetes, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                        .addComponent(jTextNombre)
+                        .addComponent(jTextPrecio)
+                        .addComponent(jTextPaquetes, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
                 .addContainerGap(99, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +104,11 @@ public class AddFitment extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextPaquetes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addComponent(jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -106,7 +117,7 @@ public class AddFitment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActionPerformed
-        inicial.query.addFitment(Integer.parseInt(jTextModelo.getText()), jTextNombre.getText(), Integer.parseInt(jTextPrecio.getText()), Integer.parseInt(jTextPaquetes.getText())); // paso los valores a la funcion
+        inicial.query.addFitment(Integer.parseInt(jTextModelo.getText()), jTextNombre.getText(), Integer.parseInt(jTextPrecio.getText()), Integer.parseInt(jTextPaquetes.getText()), Integer.parseInt(jTextCantidad.getText())); // paso los valores a la funcion
         inicial.updateTableFitment();
     }//GEN-LAST:event_jButtonActionPerformed
 
@@ -116,6 +127,8 @@ public class AddFitment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField jTextCantidad;
     private javax.swing.JTextField jTextModelo;
     private javax.swing.JTextField jTextNombre;
     private javax.swing.JTextField jTextPaquetes;

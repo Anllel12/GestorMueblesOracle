@@ -90,11 +90,11 @@ public class Incial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Modelo", "Nombre", "Precio", "Paquetes"
+                "Modelo", "Nombre", "Precio", "Paquetes", "Cantidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

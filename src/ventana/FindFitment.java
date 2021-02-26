@@ -37,7 +37,7 @@ public class FindFitment extends javax.swing.JFrame {
 
         setTitle("Buscar Muebles");
 
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo", "Nombre", "Precio", "Paquetes" }));
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo", "Nombre", "Precio", "Paquetes", "Cantidad"}));
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
